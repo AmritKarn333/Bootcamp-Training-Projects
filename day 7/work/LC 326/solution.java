@@ -10,4 +10,4 @@ class Solution {
 
         return n == 1;
     }
-}
+}//end
