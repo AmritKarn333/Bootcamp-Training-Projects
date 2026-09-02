@@ -1,31 +1,23 @@
 class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
 
-    public boolean isBalanced(TreeNode root) {
-        return height(root) != -1;
-    }
-
-    private int height(TreeNode node) {
-
-        if (node == null) {
-            return 0;
+        // Both are empty
+        if (p == null && q == null) {
+            return true;
         }
 
-        int leftHeight = height(node.left);
-
-        if (leftHeight == -1) {
-            return -1;
+        // One is empty, the other isn't
+        if (p == null || q == null) {
+            return false;
         }
 
-        int rightHeight = height(node.right);
-
-        if (rightHeight == -1) {
-            return -1;
+        // Values are different
+        if (p.val != q.val) {
+            return false;
         }
 
-        if (Math.abs(leftHeight - rightHeight) > 1) {
-            return -1;
-        }
-
-        return 1 + Math.max(leftHeight, rightHeight);
+        // Compare left and right subtrees
+        return isSameTree(p.left, q.left)
+            && isSameTree(p.right, q.right);
     }
 }
